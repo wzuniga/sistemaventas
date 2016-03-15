@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <report
+        id="ventas_report"
+        model="ventas.temporada"
+        string="Reporte de Temporada"
+        name="sistemaventas.report_temporada_view"
+        file="sistemaventas.report_temporada"
+        report_type="qweb-pdf"
+    />
+
+    <!--record id="paperformat_frenchcheck" model="ventas.temporada">
+        <field name="name">French Bank Check</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">80</field>
+        <field name="page_width">175</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">80</field>
+    </record-->
+
+    <template id="sistemaventas.report_temporada_view">
+        <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
+            <div class="page">
+            <div class="container">
+                <div class="page-header" style="background-color:#568eff;color:#ffffff;">
+                    <center><h2>Reporte de Ventas por Temporada</h2></center>
+                </div>
+                <p class="bg-primary"><i>Temporada <span  class="label label-primary" t-field="o.numero"/></i></p>
+                <table class="table table-striped">
+                    <tr t-foreach="o.ventas_ids" t-as="ventas">
+                        <td><span t-field="ventas.cliente_id.nombre_cl"/></td>
+                        <td> 
+                            <table class="table table-striped">
+                                <tr t-foreach="ventas.relacion_ids" t-as="detalle">
+                                    <td><span t-field="detalle.producto_id"/></td>
+                                    <td><span t-field="detalle.precio_id.compra"/></td>
+                                    <td><span t-field="detalle.precio_id.venta"/></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td><span t-field="ventas.cancelado"/></td>
+                    </tr>
+                </table>
+            </div>
+               
+            </div>
+            </t>
+        </t>
+        </t>
+    </template>
+
+</data>
+</openerp>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a 'window action',
+            that is an action opening a view or a set of views
+        -->
+        <!-- Action to open producto.precio.temporada -->
+        <act_window 
+            id='do_producto_precio_temporada_action' 
+            name='Relacion' 
+            res_model='ventas.producto.precio.temporada' 
+            view_mode='tree,form,search'/>
+
+        <menuitem 
+            id='second_left_menu_producto_precio_temporada' 
+            name='Producto.precio.temporadas' 
+            parent='module_clientes' 
+            action='do_producto_precio_temporada_action'/>
+        <!-- Full id location:
+             action='openacademy.course_list_action'
+             It is not required when it is the same module -->
+
+        <!-- view -->
+        <record id='view_form_producto_precio_temporada' model='ir.ui.view'>
+            <field name='name'>Relacion Form</field>
+            <field name='model'>ventas.producto.precio.temporada</field>
+            <field name='arch' type='xml'>
+            <form>
+                <header>
+                </header>
+                <sheet>
+                <group name='group_top'>
+                    <group name='group_left'>
+
+                        <field name='producto_id' placeholder='producto_id'/>
+                        <field name='precio_id' placeholder='precio_id'/>
+
+                    </group>
+                </group>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+        <!-- Tree -->
+        <record id='view_tree_producto_precio_temporada' model='ir.ui.view'>
+            <field name='name'>Relacion Tree</field>
+            <field name='model'>ventas.producto.precio.temporada</field>
+            <field name='arch' type='xml'>
+            <tree>
+
+                    <field name='producto_id'/>
+                    <field name='precio_id' />
+ 
+            </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

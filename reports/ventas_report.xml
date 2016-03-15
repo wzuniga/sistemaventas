@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <report
+        id="ventas_report"
+        model="ventas.venta"
+        string="Reporte de Ventas"
+        name="sistemaventas.report_ventas_view"
+        file="sistemaventas.report_ventas"
+        report_type="qweb-pdf"
+    />
+
+    <template id="sistemaventas.report_ventas_view">
+        <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <div class="page">
+
+                <center><h2>Reporte de Ventas</h2></center>
+
+                <span t-field="o.cliente_id.nombre_cl"/>
+                <span t-foreach="o.relacion_ids" t-as="relacion"/>
+                <span t-field="relacion.precio_id"/>
+                <!--span t-field="relacion.precio_id.compra"/>
+                <span t-field="relacion.precio_id.venta"/-->
+
+
+                <!--i><span t-field="relacion.temporada_id.numero"/></i>
+                <i><span  t-foreach="relacion.ventas_id" t-as="ventas"/></i>
+                <i><span t-field="ventas.cliente_id.nombre_cl"/></i-->
+
+
+                <!--h2>Reporte de matricula: <i><span t-field="o.alumno.cui"/></i></h2>
+
+                <span t-field="o.alumno.foto" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;:&quot;img-rounded&quot;}"/>
+
+                <table>
+                    <tr>
+                        <td>Codigo de Matricula: </td><td><span t-field="o.codigo"/></td>
+                    </tr>
+                    <tr>
+                        <td>CUI de Alumno: </td><td><span t-field="o.alumno.cui"/></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre y Apellidos del Alumno: </td><td><span t-field="o.nombre_alumno"/></td>
+                    </tr>
+                    <tr>
+                        <td>Cursos Matriculados: </td><td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td></td><td>Nombre del Curso</td><td>Creditos</td>
+                    </tr>
+
+                    <tr t-foreach="o.matr_curs_cod" t-as="curso">
+                        <td></td><td><span t-field="curso.curso_nombre"/></td><td><span t-field="curso.creditos"/></td>
+                    </tr>   
+
+                </table-->
+            </div>
+        </t>
+        </t>
+    </template>
+
+</data>
+</openerp>

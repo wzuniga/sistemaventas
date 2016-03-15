@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a 'window action',
+            that is an action opening a view or a set of views
+        -->
+        <!-- Action to open cliente -->
+        <act_window 
+            id='do_cliente_action' 
+            name='Clientes' 
+            res_model='ventas.cliente' 
+            view_mode='tree,form,search'/>
+
+        <menuitem 
+            id='second_left_menu_cliente' 
+            name='Clientes' 
+            parent='module_clientes' 
+            action='do_cliente_action'/>
+        <!-- Full id location:
+             action='openacademy.course_list_action'
+             It is not required when it is the same module -->
+
+        <!-- view -->
+        <record id='view_form_cliente' model='ir.ui.view'>
+            <field name='name'>cliente Form</field>
+            <field name='model'>ventas.cliente</field>
+            <field name='arch' type='xml'>
+            <form>
+                <header>
+                </header>
+                <sheet>
+                <group name='group_top'>
+                    <group name='group_left'>
+
+                        <field name='nombre_cl' placeholder='Nombre'/>
+                        <field name='ventas_ids' placeholder='ventas'/>
+
+                    </group>
+                </group>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+        <!-- Tree -->
+        <record id='view_tree_cliente' model='ir.ui.view'>
+            <field name='name'>cliente Tree</field>
+            <field name='model'>ventas.cliente</field>
+            <field name='arch' type='xml'>
+            <tree>
+
+                    <field name='nombre_cl'/>
+                    <field name='ventas_ids'/>
+
+            </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

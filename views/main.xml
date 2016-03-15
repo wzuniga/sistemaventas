@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>   
+    
+    <menuitem id='main_module_system' name='Sistema de Ventas'/>
+    <menuitem id='module_clientes' name='Clientes' parent='main_module_system'/>
+    <!--menuitem id='module_tasita_menu_modelo' name='Hoja Modelo' parent='main_module_system'/-->    
+    
+  </data>
+</openerp>
