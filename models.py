@@ -11,9 +11,15 @@ class Cliente(models.Model):
                             required=True,
                             help='Nombre del cliente')
 
+    apellido_cl = fields.Char(string='Apellido de cliente',
+                              size=40,
+                              required=True,
+                              help='Apellido del cliente')
+
     ventas_ids = fields.One2many('ventas.venta',
                                  'cliente_id',
                                  string='Compras')
+
 
 class Producto(models.Model):
     _name = 'ventas.producto'
@@ -118,6 +124,7 @@ class Pago(models.Model):
     fecha_pago = fields.Date()
 
     ventas_id = fields.Many2one('ventas.venta','Ventas')
+    
 
 class Producto_precio_temporada(models.Model):
     _name = 'ventas.producto.precio.temporada'

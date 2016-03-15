@@ -48,13 +48,24 @@
                                 </tr>
                             </table>
                         </td>
-                        <td><span t-field="ventas.cancelado"/></td>
+                        <td>
+                            <strong t-if="ventas.cancelado == True">Total cancelado</strong>
+                            <strong t-if="ventas.cancelado == False">Deuda</strong>
+                        </td>
                     </tr>
                 </table>
             </div>
                
             </div>
             </t>
+
+
+            <table>
+                
+                <tr>
+                    <td></td>
+                </tr>   
+            </table>
         </t>
         </t>
     </template>

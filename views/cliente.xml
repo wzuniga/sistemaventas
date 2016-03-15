@@ -35,6 +35,7 @@
                     <group name='group_left'>
 
                         <field name='nombre_cl' placeholder='Nombre'/>
+                        <field name='apellido_cl' placeholder='Apellido'/>
                         <field name='ventas_ids' placeholder='ventas'/>
 
                     </group>
@@ -52,6 +53,7 @@
             <tree>
 
                     <field name='nombre_cl'/>
+                    <field name='apellido_cl'/>
                     <field name='ventas_ids'/>
 
             </tree>
