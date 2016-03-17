@@ -35,16 +35,28 @@
                 <div class="page-header" style="background-color:#568eff;color:#ffffff;">
                     <center><h2>Reporte de Ventas por Temporada</h2></center>
                 </div>
-                <p class="bg-primary"><i>Temporada <span  class="label label-primary" t-field="o.numero"/></i></p>
+                <p class="bg-primary"><i>Temporada <span class="label label-primary" t-field="o.numero"/></i></p>
                 <table class="table table-striped">
+                    <t t-set='total_venta' t-value='0'/>
+                    <t t-set='total_compra' t-value='0'/>
+                    <t t-set='total_n_prod' t-value='0'/>
+                    <t t-set='total_deuda' t-value='0'/>
                     <tr t-foreach="o.ventas_ids" t-as="ventas">
+                        <t t-set='total_deuda' t-value='total_deuda+ventas.deuda'/>
                         <td><span t-field="ventas.cliente_id.nombre_cl"/></td>
                         <td> 
                             <table class="table table-striped">
                                 <tr t-foreach="ventas.relacion_ids" t-as="detalle">
+                                    <t t-set='total_n_prod' t-value='total_n_prod+1'/>
                                     <td><span t-field="detalle.producto_id"/></td>
-                                    <td><span t-field="detalle.precio_id.compra"/></td>
-                                    <td><span t-field="detalle.precio_id.venta"/></td>
+                                    <td>
+                                        <span t-field="detalle.precio_id.compra"/>
+                                        <t t-set='total_compra' t-value='total_compra+detalle.precio_id.compra'/>
+                                    </td>
+                                    <td>
+                                        <span t-field="detalle.precio_id.venta"/>
+                                         <t t-set='total_venta' t-value='total_venta+detalle.precio_id.venta'/>
+                                    </td>
                                 </tr>
                             </table>
                         </td>
@@ -55,6 +67,23 @@
                     </tr>
                 </table>
             </div>
+
+            <hr/>
+
+            <table class="table table-striped">
+                <tr>Estadistica</tr>
+                <tr><td></td><td>Total N. productos</td><td>Precio de Compra</td><td>Precio de venta</td><td>Deuda</td></tr>
+                <tr>
+                    <td>Totales</td><td><t t-esc='total_n_prod'/></td><td><t t-esc='total_compra'/></td><td><t t-esc='total_venta'/></td><td><t t-esc='total_deuda'/></td>
+                </tr>
+            </table>
+
+           <!-- 
+            t-esc provar esto con html contenido
+            <t t-set="foo" t-value="2 + 1"/>
+            <t t-esc="foo"/>
+            -->
+
                
             </div>
             </t>

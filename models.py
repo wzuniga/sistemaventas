@@ -37,32 +37,40 @@ class Temporada(models.Model):
 
     numero = fields.Integer(string='Numero Temporada',
                             size=2,
+                            required=True,
                             help='Numero de la temporada')
     
     anno = fields.Integer(string='Año',
                           size=4,
+                          required=True,
                           help='Año de la temporada')
 
     ventas_ids = fields.One2many('ventas.venta','temporada_id',string='Detalle temporada')
+
+    #constrainnnn  sql
 
 
 class Venta(models.Model):
     _name = 'ventas.venta'
     _rec_name = 'name'
 
-    cancelado = fields.Boolean(string='Cancelado',default=False,compute='_compute_debt',store=True)
+    cancelado = fields.Boolean(string='Cancelado',
+                               default=False,
+                               compute='_compute_debt',
+                               store=True)
     
-    fecha_pedido = fields.Date()
+    fecha_pedido = fields.Date(required=True)
 
-    cliente_id = fields.Many2one('ventas.cliente','Cliente')
+    cliente_id = fields.Many2one('ventas.cliente','Cliente',required=True)
 
-    pago_ids = fields.One2many('ventas.pago','ventas_id',string='Pagos')
+    pago_ids = fields.One2many('ventas.pago','ventas_id',string='Pagos',required=True)
 
     relacion_ids = fields.One2many('ventas.producto.precio.temporada',
     							   'ventas_id',
-    							   string='Detalle venta')
+    							   string='Detalle venta',
+                                   required=True)
 
-    temporada_id = fields.Many2one('ventas.temporada','Temporada')
+    temporada_id = fields.Many2one('ventas.temporada','Temporada',required=True)
 
     name = fields.Char(string='Nombre a quien se vendio',
                        compute='_make_name',
@@ -107,10 +115,12 @@ class Precio(models.Model):
 
     compra = fields.Float(string='Precio de compra',
                           digits=(6,2),
+                          required=True,
                           help='Precio del producto cuando se compro')
 
     venta = fields.Float(string='Precio de venta',
                          digits=(6,2),
+                         required=True,
                          help='Precio del producto de venta')
 
 class Pago(models.Model):
@@ -119,11 +129,12 @@ class Pago(models.Model):
 
     cantidad = fields.Float(string='Pagado',
                             digits=(6,2),
+                            required=True,
                             help='Pagos a cuenta')
 
-    fecha_pago = fields.Date()
+    fecha_pago = fields.Date(required=True)
 
-    ventas_id = fields.Many2one('ventas.venta','Ventas')
+    ventas_id = fields.Many2one('ventas.venta','Ventas',required=True)
     
 
 class Producto_precio_temporada(models.Model):
